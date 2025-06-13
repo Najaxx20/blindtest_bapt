@@ -47,7 +47,7 @@
   <h1>Blind Test Spécial Techno</h1>
   <p>Devine l'artiste ou le nom du morceau pour chaque extrait !</p>
 
-  <div class="track" data-answer="Exproz">
+  <div class="track" data-answers="Exproz, The future, Exproz - The future">
     <p>🎧 Extrait 1</p>
     <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay"
       src="https://soundcloud.com/its_willemnl/exproz-the-future>
@@ -86,28 +86,30 @@
   </div>
 
   <script>
-    const tracks = document.querySelectorAll('.track');
-    let validCount = 0;
+  const tracks = document.querySelectorAll('.track');
+  let validCount = 0;
 
-    tracks.forEach(track => {
-      const button = track.querySelector('button');
-      const input = track.querySelector('input');
-      const answer = track.dataset.answer.toLowerCase();
+  tracks.forEach(track => {
+    const button = track.querySelector('button');
+    const input = track.querySelector('input');
+    const answers = track.dataset.answers.toLowerCase().split(',').map(a => a.trim());
 
-      button.addEventListener('click', () => {
-        if (input.value.trim().toLowerCase() === answer) {
-          button.disabled = true;
-          input.disabled = true;
-          track.style.borderColor = '#39ff14';
-          validCount++;
-          if (validCount === tracks.length) {
-            document.getElementById('success').style.display = 'block';
-          }
-        } else {
-          input.style.border = '2px solid red';
+    button.addEventListener('click', () => {
+      const userInput = input.value.trim().toLowerCase();
+
+      if (answers.includes(userInput)) {
+        button.disabled = true;
+        input.disabled = true;
+        track.style.borderColor = '#39ff14';
+        validCount++;
+        if (validCount === tracks.length) {
+          document.getElementById('success').style.display = 'block';
         }
-      });
+      } else {
+        input.style.border = '2px solid red';
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
