@@ -57,9 +57,23 @@
       border-radius: 12px;
       pointer-events: none;
     }
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.3;
+    }  
   </style>
 </head>
 <body>
+  <video autoplay muted loop id="background-video">
+  <source src="assets/background.mp4" type="video/mp4">
+  Ton navigateur ne supporte pas la lecture vidéo.
+  </video>
   <h1>Blind Test</h1>
   <p>Devine l'artiste et/ou le nom du morceau pour chaque extrait !</p>
 
